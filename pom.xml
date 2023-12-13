@@ -6,8 +6,8 @@
     <version>1.0.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <!-- vert.x properties -->
         <vertx.version>4.3.1</vertx.version>
         <vertx.verticle>com.charles.project.MainVerticle</vertx.verticle>
