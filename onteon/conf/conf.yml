@@ -1,0 +1,41 @@
+app:
+  name: 'Vertx-app'
+  version: '1.0.0'
+  appType: 'standard'
+  procType: 'native'
+  processProvider:
+    name: 'JVMOsProcessProviderImpl'
+    version: '1.0.0'
+    executable:
+      start:
+        path: '${ont_app_path}/bin'
+        startJvmCommand: 'java -DHTTP_PORT=${ont_port_1} -jar'
+        executableFileName: 'Vertx.jar'
+        sysParams: null
+        mainClass: null
+        mainFunctionArgs: null
+        successLine: 'Vertx properly started'
+        makeActionOnMemoryOverflow: true
+        maxActionOnMemoryOverflow: 5
+        increasePercentageOnMemoryOverflow: 20
+        xms: 128M
+        xmx: 256M
+        cpus: null
+        memory: null
+  placeHolder:
+    name: 'PlaceHolderManagerImpl'
+    version: '1.0.0'
+    filesToReplace: []
+    variables: {}
+  serviceRepository:
+    healthCheckUrl: 'http://${address}:${ont_port_1}/check'
+    entities:
+      - entity:
+          priority: 1
+          port: ${ont_port_1}
+          protocol:
+            type: 'HTTP'
+            version: '1.1'
+          isExternal: false
+          isInternal: true
+

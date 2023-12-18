@@ -6,6 +6,8 @@ import java.util.*;
 import com.charles.project.model.Product;
 import com.charles.project.service.ReadWriteToDisk;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
@@ -22,15 +24,23 @@ public class MainVerticle extends AbstractVerticle {
 // Initialize router
 		Router router = Router.router(vertx);
 		router.route().handler(BodyHandler.create());
-
 		
-//Create HTTP server
-		vertx.createHttpServer().requestHandler(router).listen(8000);
+
+//Create HTTP server with external port configuration		
+ConfigRetriever retriever = ConfigRetriever.create(vertx);
+retriever.getConfig(config -> {vertx.createHttpServer()
+    .requestHandler(router)
+    .listen(config.result().getInteger("HTTP_PORT", 8000));});
+		
+
+
 
 		
 		
 // Controllers
 		
+		router.get("/check").handler(this::check);
+
 		router.get("/product/list").handler(this::getProducts);
 
 		router.post("/product/create").handler(this::createProduct);
@@ -118,6 +128,13 @@ public class MainVerticle extends AbstractVerticle {
 		
 		
 		
+	}
+
+	private void check(RoutingContext ctx) {
+		ctx
+		.response()
+		.setStatusCode(200)
+		.end("it works");
 	}
 
 }

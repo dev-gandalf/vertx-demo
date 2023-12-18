@@ -13,7 +13,18 @@ import com.google.gson.stream.JsonReader;
 public class ReadWriteToDisk {
 
 	//Reminder: Use Path class instead of String
-	private String destinationPath = System.getProperty("user.home") + "/Products";
+	final static private String destinationPath = System.getProperty("user.home") + "/Products";
+	
+	
+	static {
+		File createProductDir = new File(destinationPath);
+
+		if (!createProductDir.exists()) {
+			createProductDir.mkdir();
+			System.out.println("Products directory created on path: " + destinationPath);
+		}else System.out.println("Products will be saved on path " + destinationPath);
+		
+	}
 
 	
 	public ReadWriteToDisk() {
