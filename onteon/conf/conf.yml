@@ -1,6 +1,6 @@
 app:
   name: 'Vertx-app'
-  version: '1.0.0'
+  version: '1.0.1'
   appType: 'standard'
   procType: 'native'
   processProvider:
@@ -14,7 +14,7 @@ app:
         sysParams: null
         mainClass: null
         mainFunctionArgs: null
-        successLine: 'Vertx properly started'
+        successLine: 'Succeeded in deploying verticle'
         makeActionOnMemoryOverflow: true
         maxActionOnMemoryOverflow: 5
         increasePercentageOnMemoryOverflow: 20
